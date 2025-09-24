@@ -283,6 +283,15 @@ require('lazy').setup({
       },
     },
   },
+  {
+    'seblyng/roslyn.nvim',
+    ---@module 'roslyn.config',
+    ---@type RoslynNvimConfig
+    ft = { 'cs', 'razor' },
+    opts = {
+      -- your configuration comes here; leave empty for default settings
+    },
+  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -485,7 +494,18 @@ require('lazy').setup({
       {
         'mason-org/mason.nvim',
         opts = {
-          registries = { 'github:mason-org/mason-registry', 'github:Crashdummyy/mason-registry' },
+          registries = {
+            'github:mason-org/mason-registry',
+            'github:Crashdummyy/mason-registry',
+          },
+          ensure_installed = {
+            'vim',
+            'lua',
+            'vimdoc',
+            'html',
+            'css',
+            'c_sharp',
+          },
         },
       },
       'mason-org/mason-lspconfig.nvim',
@@ -703,7 +723,9 @@ require('lazy').setup({
             },
           },
         },
-        roslyn = {},
+        roslyn = {
+          capabilities = capabilities,
+        },
         expert = {
           cmd = { 'expert' },
           root_markers = { 'mix.exs', '.git' },
@@ -955,7 +977,24 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'elixir', 'eex', 'heex', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'c_sharp',
+        'css',
+        'diff',
+        'eex',
+        'elixir',
+        'heex',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
